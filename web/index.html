@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TerraPulse</title>
+  <meta name="description" content="An immersive NISAR radar story: watch a landscape change through the clouds." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+  { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  } }
+  </script>
+</head>
+<body class="at-title">
+  <canvas id="scene"></canvas>
+  <div id="labels"></div>
+
+  <div id="loader">
+    <div class="ring"></div>
+    <div class="brand">TERRAPULSE</div>
+    <div class="msg">Preparing radar…</div>
+    <div class="bar"><i></i></div>
+  </div>
+
+  <section id="title" class="show">
+    <div class="where"></div>
+    <h1></h1>
+    <p class="sub"></p>
+    <button id="begin">Begin</button>
+    <small>An interactive story built on NASA–ISRO NISAR L-band radar</small>
+  </section>
+  <button id="skipIntro">Skip intro ›</button>
+  <div id="fade"></div>
+  <div id="caption"><p></p></div>
+  <div id="chapterCard"><div class="k"></div><h2></h2><p class="task"></p></div>
+
+  <div id="hud">
+    <header id="top">
+      <div id="brand">TERRA<b>PULSE</b></div>
+      <button id="chapterPill"><span class="n"></span><span class="name"></span><span class="chev">▾</span></button>
+      <div id="topright">
+        <button id="badge"></button>
+        <button id="voiceBtn" class="round on" title="Narration voice [V]">🔊</button>
+        <button id="ccBtn" class="round on" title="Captions [K]">CC</button>
+      </div>
+    </header>
+    <div id="chapterMenu">
+      <ol></ol>
+      <div class="foot"><button id="replay">↺ Replay narration</button><button id="aboutData">About the data</button></div>
+      <div class="read"></div>
+    </div>
+
+    <div id="colorbar"><div class="t"></div><canvas></canvas><div class="ticks"></div><div class="note"></div><div class="legendx"></div></div>
+    <nav id="dock"></nav>
+
+    <div id="pop">
+      <button class="x" title="Close">×</button>
+      <div class="cap">Radar probe</div>
+      <div class="what"></div>
+      <div class="why"></div>
+      <canvas id="probeChart"></canvas>
+      <div class="key"><i style="background:#ffb454"></i>HH <i style="background:#7fd7ff"></i>HV <i style="background:#40d8ff"></i>water <i style="background:#a6ff8c"></i>flooded veg.</div>
+      <div class="vals"></div>
+      <div class="acts"><button id="whyBtn">◎ Why is it this bright?</button><button id="zoomBtn">⤢ Fly closer</button></div>
+      <details class="prov"><summary>Source</summary><div></div></details>
+    </div>
+
+    <div id="sheet">
+      <button class="x" title="Close">×</button>
+      <div class="cap">Cross-section <span class="len"></span></div>
+      <canvas id="sectionChart"></canvas>
+      <div class="key"><i style="background:#8a6a4a"></i>ground <i style="background:#40d8ff"></i>water now <i style="background:rgba(64,216,255,.35)"></i>other passes</div>
+      <div class="src"></div>
+    </div>
+
+    <div id="statPop">
+      <div class="cap">Water in this view</div>
+      <div class="area"><span class="num">0</span><span class="unit">km²</span></div>
+      <div class="delta"></div>
+      <div class="split"></div>
+      <canvas id="chart"></canvas>
+      <div class="level"></div>
+    </div>
+
+    <div id="bottom">
+      <div id="task"><i class="dot"></i><span class="txt"></span><span class="fb"></span>        <button id="next">Continue →</button><button id="skip">Skip</button></div>
+      <div id="timeline">
+        <button id="play" title="Play / pause [Space]"><svg viewBox="0 0 24 24"><path class="p" d="M8 5v14l11-7z"/><path class="s" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button>
+        <div class="track"><div class="fill"></div><div class="thumb"></div></div>
+        <div class="date"></div>
+        <button id="statChip" title="Water statistics"></button>
+      </div>
+    </div>
+    <div id="hover"></div>
+  </div>
+
+  <div id="info"><button class="close">×</button><h3>About this data</h3><div class="body"></div></div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

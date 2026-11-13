@@ -1,0 +1,66 @@
+{
+ "voice": "onyx",
+ "model": "gpt-4o-mini-tts",
+ "files": {
+  "intro": [
+   "intro-0.mp3",
+   "intro-1.mp3",
+   "intro-2.mp3"
+  ],
+  "pulse": [
+   "pulse-0.mp3",
+   "pulse-1.mp3"
+  ],
+  "pulse-done": [
+   "pulse-done-0.mp3"
+  ],
+  "find": [
+   "find-0.mp3",
+   "find-1.mp3"
+  ],
+  "find-done": [
+   "find-done-0.mp3",
+   "find-done-1.mp3"
+  ],
+  "breath": [
+   "breath-0.mp3",
+   "breath-1.mp3"
+  ],
+  "breath-done": [
+   "breath-done-0.mp3",
+   "breath-done-1.mp3"
+  ],
+  "canopy": [
+   "canopy-0.mp3",
+   "canopy-1.mp3"
+  ],
+  "canopy-done": [
+   "canopy-done-0.mp3"
+  ],
+  "explore": [
+   "explore-0.mp3",
+   "explore-1.mp3"
+  ]
+ },
+ "hashes": {
+  "intro-0.mp3": "c3787d9fe3f5",
+  "intro-1.mp3": "18c1292e9a25",
+  "intro-2.mp3": "929b5d15924e",
+  "pulse-0.mp3": "164c41505e29",
+  "pulse-1.mp3": "5bb2a9a0d968",
+  "pulse-done-0.mp3": "5701fede4a6d",
+  "find-0.mp3": "da123d706480",
+  "find-1.mp3": "5074d6e6bfec",
+  "find-done-0.mp3": "f144dd2bd003",
+  "find-done-1.mp3": "087ef8a9e7fb",
+  "breath-0.mp3": "e3918e3ef081",
+  "breath-1.mp3": "9bf1ea64f283",
+  "breath-done-0.mp3": "fe8480997709",
+  "breath-done-1.mp3": "548e703729be",
+  "canopy-0.mp3": "b94aeb5fd10b",
+  "canopy-1.mp3": "eb25710e46d5",
+  "canopy-done-0.mp3": "a582d87b4855",
+  "explore-0.mp3": "4bf377ce88a2",
+  "explore-1.mp3": "66ed58d9c082"
+ }
+}

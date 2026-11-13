@@ -1,0 +1,35 @@
+{
+ "name": "tonle-sap",
+ "width": 768,
+ "height": 768,
+ "bbox": [
+  103.7,
+  13.12,
+  104.14,
+  13.56
+ ],
+ "offset": 0.0,
+ "scale": 0.01,
+ "files": {
+  "terrain": "tonle-sap.png",
+  "surface": "tonle-sap-surface.png"
+ },
+ "source": "Copernicus DEM GLO-30 (\u00a9 DLR e.V. 2010-2014 and \u00a9 Airbus Defence and Space GmbH 2014-2018, provided under COPERNICUS by the European Union and ESA)",
+ "tiles": [
+  "Copernicus_DSM_COG_10_N13_00_E103_00_DEM.tif",
+  "Copernicus_DSM_COG_10_N13_00_E104_00_DEM.tif"
+ ],
+ "method": "bilinear resample to 768x768; bare-ground estimate = morphological opening (radius 3 px) + 5x5 mean",
+ "pixel_m": [
+  62.056252023563765,
+  63.349687500000186
+ ],
+ "stats": {
+  "surface_min": 1.1665235757827759,
+  "surface_max": 440.7951965332031,
+  "terrain_min": 1.5000000000000002,
+  "terrain_p05": 1.5000000000000002,
+  "terrain_p50": 12.782099685668946,
+  "terrain_max": 424.9753723144531
+ }
+}

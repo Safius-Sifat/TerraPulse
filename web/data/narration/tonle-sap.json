@@ -1,0 +1,48 @@
+{
+  "voice": {
+    "model": "gpt-4o-mini-tts",
+    "voice": "onyx",
+    "instructions": "Voice: a deep, resonant, warm male documentary narrator. Tone: quiet awe and gravitas, intimate rather than loud, like a premium nature documentary. Pacing: measured and unhurried, with natural pauses at commas and a short dramatic pause before each reveal. Emphasis: lean into vivid words (breathes, hidden, backwards, flood). Never sound like an advertisement."
+  },
+  "lines": {
+    "intro": [
+      "Seven hundred and forty-seven kilometres above us, a new kind of eye is circling the Earth.",
+      "This is NISAR, a radar satellite built by NASA and India's space agency. Every twelve days it maps almost all of the planet's land and ice, through cloud, by day and by night.",
+      "Today it is watching one place. Tonle Sap, in Cambodia. A lake that breathes."
+    ],
+    "pulse": [
+      "It is monsoon season. For months, thick cloud hides this landscape from ordinary satellites.",
+      "But NISAR brings its own light: microwaves, twenty-four centimetres long, that pass straight through cloud. Press and hold to send a pulse."
+    ],
+    "pulse-done": [
+      "That is radar. Calm water reflects the pulse away, so it looks dark. Stone and buildings throw it straight back, so they shine."
+    ],
+    "find": [
+      "Somewhere below lies Angkor Wat, the largest religious monument on Earth.",
+      "Its moat is almost two hundred metres wide: a perfect dark rectangle to a radar. Can you find it?"
+    ],
+    "find-done": [
+      "There it is. Nine hundred years old, and still echoing back to orbit.",
+      "The giant dark rectangle beside it is the West Baray, a reservoir dug by hand about a thousand years ago."
+    ],
+    "breath": [
+      "Now watch a whole season, one satellite pass at a time.",
+      "Each monsoon the Mekong rises so high that the Tonle Sap river turns around, and flows backwards into the lake."
+    ],
+    "breath-done": [
+      "Peak flood. Everything glowing was dry land in June.",
+      "The ground here is almost flat, so a few metres of rising water spreads across kilometres."
+    ],
+    "canopy": [
+      "From above, a camera sees only green forest. But much of this forest is standing in water.",
+      "Long radar waves slip between the leaves, bounce off the water, then off the trunks, straight back to the satellite. Move the lens over the forest."
+    ],
+    "canopy-done": [
+      "Hidden water, found. This drowned forest is the lake's nursery, where fish spawn among the flooded trees."
+    ],
+    "explore": [
+      "This flood pulse feeds one of the richest inland fisheries on Earth. Dams and drought upstream are changing its rhythm.",
+      "With NISAR passing every twelve days, through any weather, that rhythm can be measured, season after season. Now explore it yourself."
+    ]
+  }
+}

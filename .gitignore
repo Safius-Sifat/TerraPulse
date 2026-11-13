@@ -1,3 +1,5 @@
 __pycache__/
 *.py[cod]
-.pytest_cache/
+.pytest_cache/.DS_Store
+# large raw downloads (re-fetch with the scripts; see README)
+data/raw/tonle-sap-dem/
