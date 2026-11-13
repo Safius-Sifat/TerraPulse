@@ -30,9 +30,47 @@ function utmInverse(x, y, zone, north = true) {
   return [((zone - 1) * 6 - 180 + 3) + lon * 180 / Math.PI, lat * 180 / Math.PI];
 }
 
+// Data images (elevation, radar layers) are decoded straight from the PNG bytes, never through a
+// canvas: privacy-protecting browsers (Safari, Brave, Firefox) add random noise to canvas reads on
+// real websites, and in a 24-bit packed elevation a ±1 change in red is a ±655 m spike.
+async function decodePNG(buf) {
+  const b = new Uint8Array(buf), dv = new DataView(buf);
+  if (b[0] !== 0x89 || b[1] !== 0x50) return null;               // not a PNG (e.g. a JPEG photo)
+  let p = 8, W = 0, H = 0, type = 0, depth = 0, interlace = 0; const idat = [];
+  while (p < b.length) {
+    const len = dv.getUint32(p), tag = String.fromCharCode(b[p + 4], b[p + 5], b[p + 6], b[p + 7]);
+    if (tag === 'IHDR') { W = dv.getUint32(p + 8); H = dv.getUint32(p + 12); depth = b[p + 16]; type = b[p + 17]; interlace = b[p + 20]; }
+    else if (tag === 'IDAT') idat.push(b.subarray(p + 8, p + 8 + len));
+    else if (tag === 'IEND') break;
+    p += 12 + len;
+  }
+  const ch = { 6: 4, 2: 3, 0: 1, 4: 2 }[type];
+  if (depth !== 8 || !ch || interlace) return null;               // unusual format: let the caller fall back
+  const raw = new Uint8Array(await new Response(new Blob(idat).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer());
+  const stride = W * ch, out = new Uint8Array(W * H * 4); let prev = new Uint8Array(stride), cur = new Uint8Array(stride);
+  for (let y = 0, q = 0; y < H; y++) {
+    const f = raw[q++];
+    for (let x = 0; x < stride; x++, q++) {
+      const a = x >= ch ? cur[x - ch] : 0, up = prev[x], c = x >= ch ? prev[x - ch] : 0; let v = raw[q];
+      if (f === 1) v += a; else if (f === 2) v += up; else if (f === 3) v += (a + up) >> 1;
+      else if (f === 4) { const pp = a + up - c, pa = Math.abs(pp - a), pb = Math.abs(pp - up), pc = Math.abs(pp - c); v += pa <= pb && pa <= pc ? a : pb <= pc ? up : c; }
+      cur[x] = v;
+    }
+    for (let x = 0; x < W; x++) {
+      const o = (y * W + x) * 4, i = x * ch;
+      if (ch >= 3) { out[o] = cur[i]; out[o + 1] = cur[i + 1]; out[o + 2] = cur[i + 2]; out[o + 3] = ch === 4 ? cur[i + 3] : 255; }
+      else { out[o] = out[o + 1] = out[o + 2] = cur[i]; out[o + 3] = ch === 2 ? cur[i + 1] : 255; }
+    }
+    [prev, cur] = [cur, prev];
+  }
+  return out;
+}
+
 async function pixelsOf(url) {
-  const blob = await (await fetch(url)).blob();
-  const bmp = await createImageBitmap(blob, { colorSpaceConversion: 'none', premultiplyAlpha: 'none' });
+  const buf = await (await fetch(url)).arrayBuffer();
+  try { const px = await decodePNG(buf); if (px) return px; } catch (e) { console.warn('PNG decode failed, using canvas', url, e); }
+  // photos (JPEG) go through the browser decoder; any canvas noise there is invisible
+  const bmp = await createImageBitmap(new Blob([buf]), { colorSpaceConversion: 'none', premultiplyAlpha: 'none' });
   const c = new OffscreenCanvas(bmp.width, bmp.height);
   const g = c.getContext('2d', { willReadFrequently: true });
   g.drawImage(bmp, 0, 0);
